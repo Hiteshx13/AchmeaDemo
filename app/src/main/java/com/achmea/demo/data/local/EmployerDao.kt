@@ -11,12 +11,9 @@ interface EmployerDao {
     @Query("SELECT * FROM employerentity WHERE name= :employer")
     fun getEmployersByFilter(employer: String): List<EmployerEntity>
 
-    @Query("DELETE FROM employerentity")
-    fun deleteAllEmployers()
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAllEmployers(list: List<EmployerEntity>)
+    suspend fun insertAllEmployers(list: List<EmployerEntity>)
 
     @Query("DELETE FROM employerentity WHERE timestamp < :oneWeekAgo")
-    fun deleteOldData(oneWeekAgo: Long)
+    suspend fun deleteOldData(oneWeekAgo: Long)
 }

@@ -3,11 +3,9 @@ package com.achmea.demo.presentation
 import android.app.Dialog
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.achmea.demo.R
 import com.achmea.demo.databinding.DialogFilterBinding
-import kotlin.math.max
 
 
 fun showFilterDialog(
@@ -27,14 +25,14 @@ fun showFilterDialog(
     }
 
     binding.btnApply.setOnClickListener {
-        val filter=binding.etFilter.text.toString()
-        val maxRow=Integer.parseInt(binding.etMaxRow.text.toString());
-        listener.onApply(filter, maxRow)
+        val filter = binding.etFilter.text.toString()
+        val maxRow = binding.etMaxRow.text.toString().toIntOrNull()
+        listener.onApply(filter, maxRow ?: 1)
         mDialog.dismiss()
     }
     mDialog.show()
 }
 
 interface DialogOnClick {
-    fun onApply(filter:String,maxRow:Int)
+    fun onApply(filter: String, maxRow: Int)
 }
