@@ -33,6 +33,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -45,7 +49,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-
+    //DPDP
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
 
     //Hilt
     implementation 'com.google.dagger:hilt-android:2.43.2'

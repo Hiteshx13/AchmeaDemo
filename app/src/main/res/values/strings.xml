@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AchmeaDemo</string>
+    <string name="filter">Filter\n</string>
+    <string name="apply">Apply</string>
+    <string name="enter_max_row_optional">Enter Max Row (Optional)</string>
+    <string name="enter_employer_name">Enter Employer name</string>
 </resources>

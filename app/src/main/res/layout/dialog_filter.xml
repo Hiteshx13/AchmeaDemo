@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_rounded_blue_border_dialog"
+        android:padding="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:textColor="@color/purple"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold"
+            tools:text="Filter" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etFilter"
+            style="@style/StyleEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitle"
+            android:hint="@string/enter_employer_name"
+            android:maxLines="1"
+            android:textSize="@dimen/_12ssp"
+            tools:layout_editor_absoluteX="13dp" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etMaxRow"
+            style="@style/StyleEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etFilter"
+            android:hint="@string/enter_max_row_optional"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp"
+            tools:text="" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnApply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etMaxRow"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/bg_purple_rounded"
+            android:paddingStart="@dimen/_20sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            android:text="@string/apply"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_9ssp" />
+    </RelativeLayout>
+</layout>

@@ -6,4 +6,9 @@
     </style>
 
     <style name="Theme.AchmeaDemo" parent="Base.Theme.AchmeaDemo" />
+
+    <style name="StyleEditText">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">#585858</item>
+    </style>
 </resources>
