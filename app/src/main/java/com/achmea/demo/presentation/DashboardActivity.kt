@@ -45,7 +45,7 @@ class DashboardActivity : AppCompatActivity() {
 
                 is NetworkResult.Error -> {
                     Toast.makeText(this, data.errorMessage, Toast.LENGTH_SHORT).show()
-                    binding.tvText.text = "Network Error..."
+                    binding.tvText.text = data.errorMessage
                 }
 
                 is NetworkResult.Success -> {
