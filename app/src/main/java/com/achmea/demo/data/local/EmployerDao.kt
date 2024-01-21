@@ -8,8 +8,11 @@ import androidx.room.Query
 @Dao
 interface EmployerDao {
 
-    @Query("SELECT * FROM employerentity WHERE name= :employer")
+    @Query("SELECT * FROM employerentity WHERE name LIKE '%' ||:employer || '%'")
     fun getEmployersByFilter(employer: String): List<EmployerEntity>
+
+    @Query("SELECT * FROM employerentity")
+    fun getAll(): List<EmployerEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllEmployers(list: List<EmployerEntity>)

@@ -3,7 +3,7 @@ package com.achmea.demo.data.repository
 import com.achmea.demo.data.local.EmployerDao
 import com.achmea.demo.data.local.toEmployer
 import com.achmea.demo.data.remote.EmployerApi
-import com.achmea.demo.data.remote.dto.toEmployer
+import com.achmea.demo.data.remote.dto.toEmployerEntity
 import com.achmea.demo.domain.model.Employer
 import com.achmea.demo.domain.repository.EmployerRepository
 import kotlinx.coroutines.Dispatchers
@@ -35,11 +35,16 @@ class EmployerRepositoryImpl(
                 // If not in cache, fetch from the network
                 val newEmployers = apiService.getEmployers(filter, maxRows)
 
-//                // Save to local cache
-//                val entities = newEmployers.map { it.toEmployerEntity() }
-//                employerDao.insertAllEmployers(entities)
+                if (newEmployers.isNotEmpty()) {
+                // Save to local cache
+                    val entities = newEmployers.map { it.toEmployerEntity() }
+                    employerDao.insertAllEmployers(entities)
 
-                return@withContext newEmployers.map { it.toEmployer() }
+                    val latestCachedEmployers = employerDao.getEmployersByFilter(filter)
+                    return@withContext latestCachedEmployers.map { it.toEmployer() }
+                } else {
+                    return@withContext listOf<Employer>()
+                }
             }
         }
     }

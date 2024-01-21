@@ -8,6 +8,7 @@ class GetEmployerUseCase(
     private val repository: EmployerRepository
 ) {
     suspend fun getEmployers(filter: String, maxRows: Int): NetworkResult<List<Employer>> {
+        NetworkResult.Loading<Employer>()
         return try {
             val result = repository.getEmployerData(filter, maxRows)
             NetworkResult.Success(result)

@@ -1,14 +1,17 @@
 package com.achmea.demo.presentation
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.achmea.demo.MyApplication
 import com.achmea.demo.R
 import com.achmea.demo.common.NetworkResult
 import com.achmea.demo.databinding.ActivityDashboardBinding
+import com.achmea.demo.domain.model.Employer
 import com.achmea.demo.domain.use_case.GetEmployerUseCase
 
 class DashboardActivity : AppCompatActivity() {
@@ -26,7 +29,6 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this, viewModelFactory {
-
             val authRepository = MyApplication.appModule.employerRepository
             val mainUseCase = GetEmployerUseCase(authRepository)
             DashboardViewModel(mainUseCase)
@@ -34,26 +36,36 @@ class DashboardActivity : AppCompatActivity() {
 
         initObserver()
         initClickListener()
+        getCachedData()
     }
 
     private fun initObserver() {
         viewModel.employerData.observe(this) { data ->
+
             when (data) {
                 is NetworkResult.Loading -> {
-                    binding.tvText.text = "Loading..."
+                    updateViewVisibility(false)
+                    binding.progressbar.isVisible = true
                 }
 
                 is NetworkResult.Error -> {
-                    Toast.makeText(this, data.errorMessage, Toast.LENGTH_SHORT).show()
-                    binding.tvText.text = data.errorMessage
+                    updateViewVisibility(false)
+                    binding.progressbar.isVisible = false
+                    binding.tvMessage.text = data.message
                 }
 
                 is NetworkResult.Success -> {
-                    binding.tvText.text = "Success..."
+                    binding.progressbar.isVisible = false
+                    if (data.data.isNullOrEmpty()) {
+                        updateViewVisibility(false)
+                        binding.tvMessage.text = resources.getString(R.string.no_data_found)
+                    } else {
+                        updateViewVisibility(true)
+                        showEmployerList(data.data)
+                    }
                 }
             }
         }
-
     }
 
     private fun initClickListener() {
@@ -64,5 +76,21 @@ class DashboardActivity : AppCompatActivity() {
                 }
             })
         }
+    }
+
+    private fun getCachedData() {
+        viewModel.getEmployers("Ach", 1)
+    }
+
+    private fun showEmployerList(list: List<Employer>) {
+        val recyclerView: RecyclerView = findViewById(R.id.rvEmployers)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        val adapter = EmployerAdapter(list)
+        recyclerView.adapter = adapter
+    }
+
+    private fun updateViewVisibility(isDataAvailable: Boolean) {
+        binding.rvEmployers.isVisible = isDataAvailable
+        binding.tvMessage.isVisible = !isDataAvailable
     }
 }

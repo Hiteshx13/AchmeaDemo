@@ -5,7 +5,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_rounded_blue_border_dialog"
+        android:background="@drawable/bg_rounded_light_purple_border"
         android:padding="@dimen/_10sdp"
         android:paddingBottom="@dimen/_10sdp">
 
@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvTitle"
             android:hint="@string/enter_employer_name"
+            android:inputType="textCapSentences"
             android:maxLines="1"
             android:textSize="@dimen/_12ssp"
             tools:layout_editor_absoluteX="13dp" />

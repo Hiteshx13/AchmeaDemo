@@ -2,6 +2,11 @@
     <string name="app_name">AchmeaDemo</string>
     <string name="filter">Filter\n</string>
     <string name="apply">Apply</string>
+    <string name="no_data_found">No data found.</string>
     <string name="enter_max_row_optional">Enter Max Row (Optional)</string>
     <string name="enter_employer_name">Enter Employer name</string>
+    <string name="discount_percentage">Discount Percentage: %s</string>
+    <string name="employer_id">Employer ID: %s</string>
+    <string name="place">Place: %s</string>
+    <string name="name">Name: %s</string>
 </resources>
