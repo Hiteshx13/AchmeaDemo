@@ -27,7 +27,6 @@ class AppModuleImpl(
 ) : AppModule {
 
     override val employerApi: EmployerApi by lazy {
-
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         val client = OkHttpClient.Builder()
@@ -43,7 +42,6 @@ class AppModuleImpl(
             .build()
             .create(EmployerApi::class.java)
     }
-
 
     override val appDatabase: AppDatabase by lazy {
         Room.databaseBuilder(appContext, AppDatabase::class.java, "acheam-demo").build()

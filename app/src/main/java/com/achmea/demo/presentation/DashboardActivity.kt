@@ -37,7 +37,7 @@ class DashboardActivity : AppCompatActivity() {
         initObserver()
         initClickListener()
 
-        // fetch remaining cached data
+        // get cached data from local database
         viewModel.getAllCachedEmployers()
     }
 
