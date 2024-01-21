@@ -21,14 +21,13 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorBlack"
+            android:backgroundTint="@color/colorLightSky"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorLightSky"
                 android:padding="@dimen/_10sdp"
                 android:paddingBottom="@dimen/_10sdp">
 
