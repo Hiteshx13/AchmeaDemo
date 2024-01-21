@@ -22,10 +22,6 @@ class EmployerRepositoryImpl(
 
             //retrieve data from local storage if already cached
             val cachedEmployers = employerDao.getEmployersByFilterAndMaxRow(filter, maxRows)
-//            val cachedEmployers = if (maxRows != null) {
-//            } else {
-//                employerDao.getEmployersByFilter(filter)
-//            }
 
             if (cachedEmployers.isNotEmpty() && maxRows == null ||
                 cachedEmployers.isNotEmpty() && maxRows!! <= cachedEmployers.size
