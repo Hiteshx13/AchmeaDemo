@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/etFilter"
             android:hint="@string/enter_max_row_optional"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="@dimen/_12ssp"

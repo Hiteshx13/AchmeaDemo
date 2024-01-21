@@ -10,9 +10,11 @@ interface EmployerDao {
 
     @Query("SELECT * FROM employerentity WHERE name LIKE '%' ||:employer || '%'")
     fun getEmployersByFilter(employer: String): List<EmployerEntity>
+ @Query("SELECT * FROM employerentity WHERE name LIKE '%' ||:employer || '%' LIMIT :maxRow")
+    fun getEmployersByFilterAndMaxRow(employer: String,maxRow:Int): List<EmployerEntity>
 
     @Query("SELECT * FROM employerentity")
-    fun getAll(): List<EmployerEntity>
+    fun getAllEmployers(): List<EmployerEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllEmployers(list: List<EmployerEntity>)

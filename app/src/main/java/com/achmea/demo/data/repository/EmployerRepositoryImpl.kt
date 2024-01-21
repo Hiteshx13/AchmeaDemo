@@ -1,6 +1,7 @@
 package com.achmea.demo.data.repository
 
 import com.achmea.demo.data.local.EmployerDao
+import com.achmea.demo.data.local.EmployerEntity
 import com.achmea.demo.data.local.toEmployer
 import com.achmea.demo.data.remote.EmployerApi
 import com.achmea.demo.data.remote.dto.toEmployerEntity
@@ -28,7 +29,14 @@ class EmployerRepositoryImpl(
             employerDao.deleteOldData(oneWeekAgo)
 
             //retrieve data from local storage if already cached
-            val cachedEmployers = employerDao.getEmployersByFilter(filter)
+            var cachedEmployers: List<EmployerEntity>? = null
+            cachedEmployers = if (maxRows > 1) {
+                employerDao.getEmployersByFilterAndMaxRow(filter, maxRows)
+            } else {
+                employerDao.getEmployersByFilter(filter)
+            }
+
+
             if (cachedEmployers.isNotEmpty()) {
                 return@withContext cachedEmployers.map { it.toEmployer() }
             } else {
@@ -36,7 +44,7 @@ class EmployerRepositoryImpl(
                 val newEmployers = apiService.getEmployers(filter, maxRows)
 
                 if (newEmployers.isNotEmpty()) {
-                // Save to local cache
+                    // Save to local cache
                     val entities = newEmployers.map { it.toEmployerEntity() }
                     employerDao.insertAllEmployers(entities)
 
@@ -46,6 +54,13 @@ class EmployerRepositoryImpl(
                     return@withContext listOf<Employer>()
                 }
             }
+        }
+    }
+
+    override suspend fun getAllCachedEmployers(): List<Employer> {
+        return withContext(Dispatchers.IO) {
+            val latestCachedEmployers = employerDao.getAllEmployers()
+            return@withContext latestCachedEmployers.map { it.toEmployer() }
         }
     }
 }

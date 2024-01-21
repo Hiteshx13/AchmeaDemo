@@ -16,4 +16,13 @@ class GetEmployerUseCase(
             NetworkResult.Error(e.message ?: "An error occurred")
         }
     }
+    suspend fun getAllCachedEmployers(): NetworkResult<List<Employer>> {
+        NetworkResult.Loading<Employer>()
+        return try {
+            val result = repository.getAllCachedEmployers()
+            NetworkResult.Success(result)
+        } catch (e: Exception) {
+            NetworkResult.Error(e.message ?: "An error occurred")
+        }
+    }
 }

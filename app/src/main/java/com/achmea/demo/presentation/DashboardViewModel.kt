@@ -22,4 +22,11 @@ class DashboardViewModel(
             _employerData.value = result
         }
     }
+
+    fun getAllCachedEmployers() {
+        viewModelScope.launch {
+            val result = getEmployerUseCase.getAllCachedEmployers()
+            _employerData.value = result
+        }
+    }
 }

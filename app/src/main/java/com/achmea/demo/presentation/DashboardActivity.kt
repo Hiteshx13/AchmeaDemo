@@ -79,7 +79,7 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun getCachedData() {
-        viewModel.getEmployers("Ach", 1)
+        viewModel.getAllCachedEmployers()
     }
 
     private fun showEmployerList(list: List<Employer>) {
