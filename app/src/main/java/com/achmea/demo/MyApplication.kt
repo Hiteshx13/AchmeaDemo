@@ -28,8 +28,8 @@ class MyApplication : Application() {
             .build()
 
         val periodicWorkRequest = PeriodicWorkRequestBuilder<DatabaseCleanerWorker>(
-            repeatInterval = 5, // repeat every 7 days
-            repeatIntervalTimeUnit = TimeUnit.SECONDS
+            repeatInterval = 7, // repeat every 7 days
+            repeatIntervalTimeUnit = TimeUnit.DAYS
         )
             .setConstraints(constraints)
             .build()
