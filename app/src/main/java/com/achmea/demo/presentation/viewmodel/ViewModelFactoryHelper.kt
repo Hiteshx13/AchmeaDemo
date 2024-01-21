@@ -1,4 +1,6 @@
-package com.achmea.demo.presentation
+@file:Suppress("UNCHECKED_CAST")
+
+package com.achmea.demo.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

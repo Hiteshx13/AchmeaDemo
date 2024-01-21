@@ -1,4 +1,4 @@
-package com.achmea.demo.presentation
+package com.achmea.demo.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

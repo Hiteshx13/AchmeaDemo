@@ -13,6 +13,8 @@ import com.achmea.demo.common.DataState
 import com.achmea.demo.databinding.ActivityDashboardBinding
 import com.achmea.demo.domain.model.Employer
 import com.achmea.demo.domain.use_case.GetEmployerUseCase
+import com.achmea.demo.presentation.viewmodel.DashboardViewModel
+import com.achmea.demo.presentation.viewmodel.viewModelFactory
 
 class DashboardActivity : AppCompatActivity() {
 
