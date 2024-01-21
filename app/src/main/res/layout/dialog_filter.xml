@@ -16,17 +16,18 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
+            android:text="@string/enter_filter_value"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/_14ssp"
-            android:textStyle="bold"
-            tools:text="Filter" />
+            android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiFilter"
             style="@style/StyleEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvTitle">
+            android:layout_below="@+id/tvTitle"
+            android:layout_marginTop="@dimen/_10sdp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etFilter"
@@ -46,7 +47,8 @@
             style="@style/StyleEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tiFilter">
+            android:layout_below="@+id/tiFilter"
+            android:layout_marginTop="@dimen/_5sdp">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/etMaxRow"

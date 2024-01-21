@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.AchmeaDemo" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.AchmeaDemo" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -11,7 +11,12 @@
 
     <style name="StyleEditText">
         <item name="android:textColor">@color/colorBlack</item>
-        <item name="android:textColorHint">#585858</item>
+        <item name="android:textColorHint">@color/colorHint</item>
+        <item name="android:background">@color/colorLightSky</item>
+    </style>
+    <style name="StyleButtonBlue">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@drawable/bg_purple_rounded</item>
     </style>
 
     <style name="StyleTextBlackItalic">

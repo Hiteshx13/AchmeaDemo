@@ -18,7 +18,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatCheckedTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,16 +28,36 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnGetEmployer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/get_employers"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_5sdp"
+            style="@style/StyleButtonBlue"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMessage"
+            tools:visibility="visible" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
+            android:visibility="gone"
+            tools:visibility="visible"
             android:layout_margin="@dimen/_16sdp"
-            android:contentDescription="@string/filter"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:contentDescription="@string/enter_filter_value"
             android:src="@drawable/ic_filter"
             app:fabSize="normal"
-            android:backgroundTint="@color/colorPrimaryDark"
+            app:borderWidth="0dp"
+            app:tint="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

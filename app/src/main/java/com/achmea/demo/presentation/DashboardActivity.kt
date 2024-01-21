@@ -1,7 +1,6 @@
 package com.achmea.demo.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -47,8 +46,6 @@ class DashboardActivity : AppCompatActivity() {
 
             when (data) {
                 is DataState.Loading -> {
-                    updateViewVisibility(false)
-                    Log.d("#STATE","LOADING")
                     binding.progressbar.isVisible = true
                 }
 
@@ -56,11 +53,9 @@ class DashboardActivity : AppCompatActivity() {
                     updateViewVisibility(false)
                     binding.progressbar.isVisible = false
                     binding.tvMessage.text = data.message
-                    Log.d("#STATE","ERROR")
                 }
 
                 is DataState.Success -> {
-                    Log.d("#STATE","SUCCESS")
                     binding.progressbar.isVisible = false
                     if (data.data.isNullOrEmpty()) {
                         updateViewVisibility(false)
@@ -76,12 +71,20 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun initClickListener() {
         binding.fab.setOnClickListener {
-            showFilterDialog(this, true, object : DialogOnClick {
-                override fun onApply(filter: String, maxRow: Int?) {
-                    viewModel.getEmployers(filter, maxRow)
-                }
-            })
+            showFilterDialog()
         }
+
+        binding.btnGetEmployer.setOnClickListener {
+            showFilterDialog()
+        }
+    }
+
+    private fun showFilterDialog() {
+        showFilterDialog(this, true, object : DialogOnClick {
+            override fun onApply(filter: String, maxRow: Int?) {
+                viewModel.getEmployers(filter, maxRow)
+            }
+        })
     }
 
     private fun showEmployerList(list: List<Employer>) {
@@ -94,5 +97,7 @@ class DashboardActivity : AppCompatActivity() {
     private fun updateViewVisibility(isDataAvailable: Boolean) {
         binding.rvEmployers.isVisible = isDataAvailable
         binding.tvMessage.isVisible = !isDataAvailable
+        binding.btnGetEmployer.isVisible = !isDataAvailable
+        binding.fab.isVisible = isDataAvailable
     }
 }
