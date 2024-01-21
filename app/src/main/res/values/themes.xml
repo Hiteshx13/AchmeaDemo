@@ -2,18 +2,20 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.AchmeaDemo" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="Theme.AchmeaDemo" parent="Base.Theme.AchmeaDemo" />
 
     <style name="StyleEditText">
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/colorBlack</item>
         <item name="android:textColorHint">#585858</item>
     </style>
 
     <style name="StyleTextBlackItalic">
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/colorBlack</item>
         <item name="android:textStyle">italic|bold</item>
         <item name="android:textSize">@dimen/_12ssp</item>
     </style>

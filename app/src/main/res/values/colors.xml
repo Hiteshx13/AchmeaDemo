@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="purple">#6E1399</color>
-    <color name="purpleLight">#BA9AC8</color>
-    <color name="colorAccent">#333333</color>
+    <color name="colorPrimary">#1144C9</color>
+    <color name="colorPrimaryDark">#3E4BBD</color>
+    <color name="colorAccent">#673AB7</color>
+    <color name="colorBlack">#FF000000</color>
+    <color name="colorWhite">#FFFFFFFF</color>
+    <color name="colorLightSky">#CCCDF8</color>
 </resources>

@@ -5,7 +5,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_rounded_light_purple_border"
+        android:background="@drawable/bg_light_purple_border"
         android:padding="@dimen/_10sdp"
         android:paddingBottom="@dimen/_10sdp">
 
@@ -16,41 +16,57 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
-            android:textColor="@color/purple"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/_14ssp"
             android:textStyle="bold"
             tools:text="Filter" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etFilter"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiFilter"
             style="@style/StyleEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvTitle"
-            android:hint="@string/enter_employer_name"
-            android:inputType="textCapSentences"
-            android:maxLines="1"
-            android:textSize="@dimen/_12ssp"
-            tools:layout_editor_absoluteX="13dp" />
+            android:layout_below="@+id/tvTitle">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etMaxRow"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFilter"
+                style="@style/StyleEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvTitle"
+                android:hint="@string/enter_employer_name"
+                android:inputType="textCapSentences"
+                android:maxLines="1"
+                android:textSize="@dimen/_12ssp"
+                tools:layout_editor_absoluteX="13dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiMaxRow"
             style="@style/StyleEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/etFilter"
-            android:hint="@string/enter_max_row_optional"
-            android:inputType="number"
-            android:maxLines="1"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_12ssp"
-            tools:text="" />
+            android:layout_below="@+id/tiFilter">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etMaxRow"
+                style="@style/StyleEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/etFilter"
+                android:hint="@string/enter_max_row_optional"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_12ssp"
+                tools:text="" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnApply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/etMaxRow"
+            android:layout_below="@+id/tiMaxRow"
             android:layout_alignParentEnd="true"
             android:layout_gravity="end"
             android:layout_marginTop="@dimen/_5sdp"
@@ -60,7 +76,7 @@
             android:paddingEnd="@dimen/_20sdp"
             android:paddingBottom="@dimen/_10sdp"
             android:text="@string/apply"
-            android:textColor="@color/white"
+            android:textColor="@color/colorWhite"
             android:textSize="@dimen/_9ssp" />
     </RelativeLayout>
 </layout>
