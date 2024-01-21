@@ -16,6 +16,7 @@ class GetEmployerUseCase(
             NetworkResult.Error(e.message ?: "An error occurred")
         }
     }
+
     suspend fun getAllCachedEmployers(): NetworkResult<List<Employer>> {
         NetworkResult.Loading<Employer>()
         return try {

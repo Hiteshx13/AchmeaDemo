@@ -36,7 +36,9 @@ class DashboardActivity : AppCompatActivity() {
 
         initObserver()
         initClickListener()
-        getCachedData()
+
+        // fetch remaining cached data
+        viewModel.getAllCachedEmployers()
     }
 
     private fun initObserver() {
@@ -76,10 +78,6 @@ class DashboardActivity : AppCompatActivity() {
                 }
             })
         }
-    }
-
-    private fun getCachedData() {
-        viewModel.getAllCachedEmployers()
     }
 
     private fun showEmployerList(list: List<Employer>) {

@@ -1,7 +1,6 @@
 package com.achmea.demo.data.repository
 
 import com.achmea.demo.data.local.EmployerDao
-import com.achmea.demo.data.local.EmployerEntity
 import com.achmea.demo.data.local.toEmployer
 import com.achmea.demo.data.remote.EmployerApi
 import com.achmea.demo.data.remote.dto.toEmployerEntity
@@ -22,20 +21,12 @@ class EmployerRepositoryImpl(
 
         return withContext(Dispatchers.IO) {
 
-            val currentTimestamp = System.currentTimeMillis()
-            val oneWeekAgo = currentTimestamp - TimeUnit.DAYS.toMillis(7)
-
-            // Delete data older than 1 week
-            employerDao.deleteOldData(oneWeekAgo)
-
             //retrieve data from local storage if already cached
-            var cachedEmployers: List<EmployerEntity>? = null
-            cachedEmployers = if (maxRows > 1) {
+            val cachedEmployers = if (maxRows > 1) {
                 employerDao.getEmployersByFilterAndMaxRow(filter, maxRows)
             } else {
                 employerDao.getEmployersByFilter(filter)
             }
-
 
             if (cachedEmployers.isNotEmpty()) {
                 return@withContext cachedEmployers.map { it.toEmployer() }
@@ -44,10 +35,13 @@ class EmployerRepositoryImpl(
                 val newEmployers = apiService.getEmployers(filter, maxRows)
 
                 if (newEmployers.isNotEmpty()) {
-                    // Save to local cache
-                    val entities = newEmployers.map { it.toEmployerEntity() }
-                    employerDao.insertAllEmployers(entities)
+                    val currentTimestamp = System.currentTimeMillis()
+                    val entities = newEmployers.map {
+                        it.timestamp = currentTimestamp
+                        it.toEmployerEntity()
+                    }
 
+                    employerDao.insertAllEmployers(entities)
                     val latestCachedEmployers = employerDao.getEmployersByFilter(filter)
                     return@withContext latestCachedEmployers.map { it.toEmployer() }
                 } else {
@@ -62,5 +56,14 @@ class EmployerRepositoryImpl(
             val latestCachedEmployers = employerDao.getAllEmployers()
             return@withContext latestCachedEmployers.map { it.toEmployer() }
         }
+    }
+
+    override suspend fun deleteExpiredDataFromLocalDB() {
+        val currentTimestamp = System.currentTimeMillis()
+        val oneWeekAgo = currentTimestamp - TimeUnit.DAYS.toMillis(7)
+
+        // Delete data older than 1 week
+        employerDao.deleteOldData(oneWeekAgo)
+
     }
 }
