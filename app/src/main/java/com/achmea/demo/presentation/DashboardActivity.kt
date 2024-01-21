@@ -1,6 +1,7 @@
 package com.achmea.demo.presentation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -9,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.achmea.demo.MyApplication
 import com.achmea.demo.R
-import com.achmea.demo.common.NetworkResult
+import com.achmea.demo.common.DataState
 import com.achmea.demo.databinding.ActivityDashboardBinding
 import com.achmea.demo.domain.model.Employer
 import com.achmea.demo.domain.use_case.GetEmployerUseCase
@@ -45,18 +46,21 @@ class DashboardActivity : AppCompatActivity() {
         viewModel.employerData.observe(this) { data ->
 
             when (data) {
-                is NetworkResult.Loading -> {
+                is DataState.Loading -> {
                     updateViewVisibility(false)
+                    Log.d("#STATE","LOADING")
                     binding.progressbar.isVisible = true
                 }
 
-                is NetworkResult.Error -> {
+                is DataState.Error -> {
                     updateViewVisibility(false)
                     binding.progressbar.isVisible = false
                     binding.tvMessage.text = data.message
+                    Log.d("#STATE","ERROR")
                 }
 
-                is NetworkResult.Success -> {
+                is DataState.Success -> {
+                    Log.d("#STATE","SUCCESS")
                     binding.progressbar.isVisible = false
                     if (data.data.isNullOrEmpty()) {
                         updateViewVisibility(false)

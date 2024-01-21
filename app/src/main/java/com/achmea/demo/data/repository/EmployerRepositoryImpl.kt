@@ -28,7 +28,7 @@ class EmployerRepositoryImpl(
                 employerDao.getEmployersByFilter(filter)
             }
 
-            if (cachedEmployers.isNotEmpty()) {
+            if (cachedEmployers.isNotEmpty() && maxRows<=cachedEmployers.size) {
                 return@withContext cachedEmployers.map { it.toEmployer() }
             } else {
                 // If not in cache, fetch from the network
