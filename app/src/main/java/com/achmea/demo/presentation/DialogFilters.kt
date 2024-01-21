@@ -27,12 +27,12 @@ fun showFilterDialog(
     binding.btnApply.setOnClickListener {
         val filter = binding.etFilter.text.toString()
         val maxRow = binding.etMaxRow.text.toString().toIntOrNull()
-        listener.onApply(filter, maxRow ?: 1)
+        listener.onApply(filter, maxRow)
         mDialog.dismiss()
     }
     mDialog.show()
 }
 
 interface DialogOnClick {
-    fun onApply(filter: String, maxRow: Int)
+    fun onApply(filter: String, maxRow: Int?)
 }

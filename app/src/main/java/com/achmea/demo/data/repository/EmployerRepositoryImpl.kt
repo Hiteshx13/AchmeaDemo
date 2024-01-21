@@ -16,19 +16,20 @@ class EmployerRepositoryImpl(
 ) : EmployerRepository {
     override suspend fun getEmployerData(
         filter: String,
-        maxRows: Int
+        maxRows: Int?
     ): List<Employer> {
-
         return withContext(Dispatchers.IO) {
 
             //retrieve data from local storage if already cached
-            val cachedEmployers = if (maxRows > 1) {
+            val cachedEmployers = if (maxRows != null) {
                 employerDao.getEmployersByFilterAndMaxRow(filter, maxRows)
             } else {
                 employerDao.getEmployersByFilter(filter)
             }
 
-            if (cachedEmployers.isNotEmpty() && maxRows<=cachedEmployers.size) {
+            if (cachedEmployers.isNotEmpty() && maxRows == null ||
+                cachedEmployers.isNotEmpty() && maxRows!! <= cachedEmployers.size
+            ) {
                 return@withContext cachedEmployers.map { it.toEmployer() }
             } else {
                 // If not in cache, fetch from the network
@@ -40,7 +41,6 @@ class EmployerRepositoryImpl(
                         it.timestamp = currentTimestamp
                         it.toEmployerEntity()
                     }
-
                     employerDao.insertAllEmployers(entities)
                     val latestCachedEmployers = employerDao.getEmployersByFilter(filter)
                     return@withContext latestCachedEmployers.map { it.toEmployer() }
@@ -64,6 +64,5 @@ class EmployerRepositoryImpl(
 
         // Delete data older than 1 week
         employerDao.deleteOldData(oneWeekAgo)
-
     }
 }

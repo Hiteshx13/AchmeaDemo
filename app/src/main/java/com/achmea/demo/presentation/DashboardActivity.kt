@@ -77,7 +77,7 @@ class DashboardActivity : AppCompatActivity() {
     private fun initClickListener() {
         binding.fab.setOnClickListener {
             showFilterDialog(this, true, object : DialogOnClick {
-                override fun onApply(filter: String, maxRow: Int) {
+                override fun onApply(filter: String, maxRow: Int?) {
                     viewModel.getEmployers(filter, maxRow)
                 }
             })

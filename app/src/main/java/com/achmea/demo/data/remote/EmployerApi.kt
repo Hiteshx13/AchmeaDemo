@@ -8,6 +8,6 @@ interface EmployerApi {
     @GET("CBAEmployerservice.svc/rest/employers")
     suspend fun getEmployers(
         @Query("filter") filter: String,
-        @Query("maxRows") maxRows: Int
+        @Query("maxRows") maxRows: Int?
     ): List<EmployerDto>
 }

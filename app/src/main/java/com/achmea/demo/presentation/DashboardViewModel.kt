@@ -16,7 +16,7 @@ class DashboardViewModel(
     private var _employerData = MutableLiveData<DataState<List<Employer>>>()
     val employerData: LiveData<DataState<List<Employer>>> = _employerData
 
-    fun getEmployers(filter: String, maxRows: Int) {
+    fun getEmployers(filter: String, maxRows: Int?) {
         viewModelScope.launch {
             _employerData.value = DataState.Loading
             val result = getEmployerUseCase.getEmployers(filter, maxRows)

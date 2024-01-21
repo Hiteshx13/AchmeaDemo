@@ -55,7 +55,7 @@ dependencies {
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
 
     //Room
-    def roomVersion = "2.4.3"
+    def roomVersion = "2.6.1"
     implementation("androidx.room:room-runtime:$roomVersion")
     kapt "androidx.room:room-compiler:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"

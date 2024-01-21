@@ -7,7 +7,7 @@ import com.achmea.demo.domain.repository.EmployerRepository
 class GetEmployerUseCase(
     private val repository: EmployerRepository
 ) {
-    suspend fun getEmployers(filter: String, maxRows: Int): DataState<List<Employer>> {
+    suspend fun getEmployers(filter: String, maxRows: Int?): DataState<List<Employer>> {
         return try {
             val result = repository.getEmployerData(filter, maxRows)
             DataState.Success(result)
