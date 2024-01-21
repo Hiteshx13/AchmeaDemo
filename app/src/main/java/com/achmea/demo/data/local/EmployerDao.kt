@@ -8,10 +8,8 @@ import androidx.room.Query
 @Dao
 interface EmployerDao {
 
-    @Query("SELECT * FROM employerentity WHERE name LIKE '%' || :employer || '%' ORDER BY name ASC")
-    fun getEmployersByFilter(employer: String): List<EmployerEntity>
- @Query("SELECT * FROM employerentity WHERE name LIKE '%' ||:employer || '%' ORDER BY name ASC LIMIT :maxRow ")
-    fun getEmployersByFilterAndMaxRow(employer: String,maxRow:Int): List<EmployerEntity>
+    @Query("SELECT * FROM employerentity WHERE name LIKE '%' ||:employer || '%' ORDER BY name ASC  LIMIT CASE WHEN :maxRows IS NULL THEN -1 ELSE :maxRows END")
+    fun getEmployersByFilterAndMaxRow(employer: String, maxRows: Int?): List<EmployerEntity>
 
     @Query("SELECT * FROM employerentity ORDER BY name ASC")
     fun getAllEmployers(): List<EmployerEntity>

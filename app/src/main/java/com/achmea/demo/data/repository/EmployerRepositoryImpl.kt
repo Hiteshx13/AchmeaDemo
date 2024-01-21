@@ -21,11 +21,11 @@ class EmployerRepositoryImpl(
         return withContext(Dispatchers.IO) {
 
             //retrieve data from local storage if already cached
-            val cachedEmployers = if (maxRows != null) {
-                employerDao.getEmployersByFilterAndMaxRow(filter, maxRows)
-            } else {
-                employerDao.getEmployersByFilter(filter)
-            }
+            val cachedEmployers = employerDao.getEmployersByFilterAndMaxRow(filter, maxRows)
+//            val cachedEmployers = if (maxRows != null) {
+//            } else {
+//                employerDao.getEmployersByFilter(filter)
+//            }
 
             if (cachedEmployers.isNotEmpty() && maxRows == null ||
                 cachedEmployers.isNotEmpty() && maxRows!! <= cachedEmployers.size
@@ -42,7 +42,7 @@ class EmployerRepositoryImpl(
                         it.toEmployerEntity()
                     }
                     employerDao.insertAllEmployers(entities)
-                    val latestCachedEmployers = employerDao.getEmployersByFilter(filter)
+                    val latestCachedEmployers = employerDao.getEmployersByFilterAndMaxRow(filter,maxRows)
                     return@withContext latestCachedEmployers.map { it.toEmployer() }
                 } else {
                     return@withContext listOf<Employer>()
