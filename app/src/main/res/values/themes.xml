@@ -1,13 +1,16 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.AchmeaDemo" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your light theme here. -->
+
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- This disables the black preview screen -->
+        <item name="android:windowDisablePreview">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
-    <style name="Theme.AchmeaDemo" parent="Base.Theme.AchmeaDemo" />
 
     <style name="StyleEditText">
         <item name="android:textColor">@color/colorBlack</item>
