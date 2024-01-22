@@ -36,5 +36,8 @@ class DashboardViewModelTest {
 
     @Test
     fun getAllCachedEmployers() {
+        viewModel.getEmployers("Ach", null)
+        val value = viewModel.employerData
+        assertThat((value.value as DataState.Success).data).isNotEmpty()
     }
 }

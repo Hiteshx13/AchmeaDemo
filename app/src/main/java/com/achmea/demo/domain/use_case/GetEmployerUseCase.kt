@@ -9,8 +9,7 @@ class GetEmployerUseCase(
 ) {
     suspend fun getEmployers(filter: String, maxRows: Int?): DataState<List<Employer>> {
         return try {
-            val result = repository.getEmployerData(filter, maxRows)
-            DataState.Success(result)
+            return repository.getEmployerData(filter, maxRows)
         } catch (e: Exception) {
             DataState.Error(e.message ?: "An error occurred")
         }

@@ -10,4 +10,5 @@
     <string name="place">Place: %s</string>
     <string name="name">Name: %s</string>
     <string name="get_employers">Get Employers</string>
+    <string name="no_internet_connection">No Internet connection.</string>
 </resources>
